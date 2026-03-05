@@ -1,122 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Datagotchi-Style Sprite Composer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap"
-      rel="stylesheet"
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#201d1a" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <meta property="og:image" content="/social-sharing-2024.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="twitter:image" content="/social-sharing-2024.jpg" />
+
+    <meta
+      name="description"
+      content="Une application Web éducative et ludique émettant des prédictions d'après vos habitudes de vie."
     />
-    <link rel="stylesheet" href="style.css" />
+    <meta
+      property="og:description"
+      content="Une application Web éducative et ludique émettant des prédictions d'après vos habitudes de vie."
+    />
+    <meta
+      property="twitter:description"
+      content="Une application Web éducative et ludique émettant des prédictions d'après vos habitudes de vie."
+    />
+
+    <meta property="og:title" content="Léger-Datagotchi" />
+    <meta name="twitter:title" content="Léger-Datagotchi" />
+    <meta name="apple-mobile-web-app-title" content="Léger-Datagotchi" />
+    <meta name="application-name" content="Léger-Datagotchi" />
+    <title>Léger-Datagotchi</title>
+    <script type="module" crossorigin src="/assets/index-C1bxUgJk.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bv9aECyZ.css">
   </head>
   <body>
-    <div class="page">
-      <header class="hero">
-        <div class="hero-text">
-          <p class="eyebrow">Sprite Composition Showcase</p>
-          <h1>Canvas Sprite Compositor</h1>
-          <p class="lede">
-            Compose layered sprites like Datagotchi. Feed JSON, load assets asynchronously,
-            and export production-ready PNGs with alpha blending.
-          </p>
-          <div class="hero-actions">
-            <button class="button button-primary" data-example="simple">Load Simple Example</button>
-            <button class="button button-secondary" data-example="complex">Load Complex Example</button>
-          </div>
-        </div>
-        <div class="hero-panel">
-          <div class="panel-stat">
-            <span class="stat-label">Layers</span>
-            <span class="stat-value" id="layerCount">0</span>
-          </div>
-          <div class="panel-stat">
-            <span class="stat-label">Canvas</span>
-            <span class="stat-value" id="canvasSize">0 x 0</span>
-          </div>
-          <div class="panel-stat">
-            <span class="stat-label">Export</span>
-            <span class="stat-value" id="exportState">Idle</span>
-          </div>
-        </div>
-      </header>
-
-      <main class="workspace">
-        <section class="panel">
-          <div class="panel-header">
-            <h2>JSON Input</h2>
-            <div class="panel-actions">
-              <button class="button button-tertiary" id="formatJson">Format</button>
-              <button class="button button-primary" id="compose">Compose</button>
-            </div>
-          </div>
-          <p class="panel-help">
-            Define layers as an ordered array. Each layer uses a URL, a zIndex for ordering,
-            and meta properties for position and size. Alpha blending is supported via meta.alpha.
-          </p>
-          <div class="code-editor" aria-label="JSON sprite layers">
-            <pre id="jsonHighlight" aria-hidden="true"></pre>
-            <textarea
-              id="jsonInput"
-              spellcheck="false"
-              aria-label="Sprite JSON input"
-            ></textarea>
-          </div>
-          <div class="status" id="jsonStatus" role="status"></div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-header">
-            <h2>Canvas Output</h2>
-            <div class="panel-actions">
-              <button class="button button-tertiary" id="copyBase64">Copy Base64</button>
-              <a class="button button-primary" id="downloadPng" download="sprite-composite.png">
-                Download PNG
-              </a>
-            </div>
-          </div>
-          <div class="canvas-frame">
-            <canvas id="spriteCanvas" width="1" height="1"></canvas>
-          </div>
-          <label class="field-label" for="base64Output">Base64 Output</label>
-          <textarea id="base64Output" readonly rows="4"></textarea>
-        </section>
-      </main>
-
-      <section class="guide">
-        <h2>How to Use</h2>
-        <ol>
-          <li>Paste or edit the JSON in the editor. Each object is a sprite layer.</li>
-          <li>Click Compose to load images asynchronously and render the stack by zIndex.</li>
-          <li>Use Download PNG to save the final composite or Copy Base64 for APIs.</li>
-        </ol>
-        <div class="guide-callout">
-          <h3>Layer Schema</h3>
-          <pre class="schema">
-[
-  {
-    "image": "https://example.com/layer.png",
-    "zIndex": 0,
-    "meta": {
-      "xOffset": 0,
-      "yOffset": 0,
-      "width": 100,
-      "height": 100,
-      "alpha": 1
-    }
-  }
-]
-          </pre>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <span>Production-ready for GitHub Pages · Built with vanilla HTML/CSS/JS</span>
-      </footer>
-    </div>
-    <noscript>This demo requires JavaScript to load and compose sprite layers.</noscript>
-    <script src="script.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
   </body>
 </html>
